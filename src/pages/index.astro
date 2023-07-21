@@ -1,9 +1,9 @@
 ---
 
-const analyticsId = process.env.PUBLIC_VERCEL_ANALYTICS_ID || process.env.VERCEL_ANALYTICS_ID || import.meta.env.VERCEL_ANALYTICS_ID || import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
-if (!process.env.VERCEL_ANALYTICS_ID) {
- process.env.VERCEL_ANALYTICS_ID = process.env.PUBLIC_VERCEL_ANALYTICS_ID
-}
+export const prerender = false;
+
+const analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
+const publicAnalyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
 ---
 
 <html lang="en">
@@ -13,14 +13,14 @@ if (!process.env.VERCEL_ANALYTICS_ID) {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
-    <!-- <script>
-      import { inject } from "@vercel/analytics";
-      inject();
-    </script> -->
   </head>
   <body>
     <h1>Astro</h1>
     <h2>{new Date().toISOString()}</h2>
-    <p>Analytics id: {analyticsId}</p>
+    <p>
+      analyticsId: {JSON.stringify({analyticsId})}
+    </br>
+      publicanAnalyticsId: {JSON.stringify({publicAnalyticsId})}
+    </p>
   </body>
 </html>
