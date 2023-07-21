@@ -7,6 +7,6 @@ export default defineConfig({
     analytics: true,
   }),
   redirects: {
-    "/2": "/1",
+    "/2[...slug]": "/1[...slug]",
   },
 });
